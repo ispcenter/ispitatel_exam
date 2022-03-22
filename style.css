@@ -16,6 +16,7 @@ h1{
   background-color: #444;
   color: #fff;
 }
+h1 > a {text-decoration: none; color: inherit;}
 .question{
 	text-align: left;
   font-size: 30px;
