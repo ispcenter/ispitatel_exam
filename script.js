@@ -17,7 +17,7 @@
           answers.push(
             `<label>
               <input type="radio" name="question${questionNumber}" value="${letter}">
-              <span class="circle">${letter}</span>
+              <!-- <span class="circle">${letter}</span> -->
               ${currentQuestion.answers[letter]}
             </label>`
           );
