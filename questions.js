@@ -6,7 +6,7 @@ const myQuestions = [
       b: "7й+ и топливный+",
       c: "6й+ и топливный+"
     },
-    correctAnswer: "c"
+    correctAnswer: "b"
   },
   {
     question: "2) Which one of these is a JavaScript package manager?",
