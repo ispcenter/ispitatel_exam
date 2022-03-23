@@ -70,14 +70,26 @@
     resultsContainer.innerHTML = `${numCorrect} правильных ответа из ${myQuestions.length} вопросов`;
   }
 
+  function myFunction() {
+    if (window.pageYOffset > sticky) {
+      header.classList.add("sticky");
+    } else {
+      header.classList.remove("sticky");
+    }
+  }
+  
   const quizContainer = document.getElementById('quiz');
   const resultsContainer = document.getElementById('results');
   const submitButton = document.getElementById('submit');
   
+  var header = document.getElementById("myHeader");
+	var sticky = header.offsetTop;
 
   // Kick things off
   buildQuiz();
 
   // Event listeners
   submitButton.addEventListener('click', showResults);
+
+  window.onscroll = function() {myFunction()};
 })();
