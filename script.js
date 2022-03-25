@@ -26,7 +26,7 @@
         // add this question and its answers to the output
         output.push(
           `<div class="question"> ${currentQuestion.question} </div>
-          <div class="answers"> ${answers.join('')} </div>`
+          <div class="answers"> ${answers.join('')} </div><hr>`
         );
       }
     );
@@ -67,10 +67,10 @@
     });
 
     // show number of correct answers out of total
-    resultsContainer.innerHTML = `${numCorrect} правильных ответа из ${myQuestions.length} вопросов`;
+    resultsContainer.innerHTML = `Правильных ответов: ${numCorrect} из ${myQuestions.length}`;
   }
 
-  function myFunction() {
+  function headerFixer() {
     if (window.pageYOffset > sticky) {
       header.classList.add("sticky");
     } else {
@@ -91,5 +91,5 @@
   // Event listeners
   submitButton.addEventListener('click', showResults);
 
-  window.onscroll = function() {myFunction()};
+  window.onscroll = function() {headerFixer()};
 })();

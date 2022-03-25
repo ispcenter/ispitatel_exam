@@ -19,7 +19,7 @@ h2 {width: 100%; margin: auto;color: #eef76f;height: 50px;}
 a {text-decoration: none; color: inherit;}
 .question{
 	text-align: left;
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 .answers {
@@ -77,16 +77,25 @@ button:hover{
   color: rgb(204, 236, 20);
   border-radius: 5px;
 }
-#oglavlenie {margin: auto;align: center;}
+#wrapperogl{margin: auto;width: 500px;}
+#oglavlenie {
+	margin: auto;
+	width: 500px;
+	align: center;
+	display: table-cell;
+  border-spacing: 5px;
+}
 .tema {
   background: rgb(231, 204, 84);
   color: #000;
-  width: 500px;
-  height: 100px;
+  width: 400px;
+  height: 60px;
   vertical-align: middle;
   border-radius: 20px;
   padding: 10px;
   margin: 10px auto;
   border: 3px solid gray;
+  display: table-cell;
 }
+.tema > p {margin: 0;}
 .icon{font-size: 50px;position: absolute;}
