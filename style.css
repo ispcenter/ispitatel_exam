@@ -99,3 +99,9 @@ button:hover{
 }
 .tema > p {margin: 0;}
 .icon{font-size: 50px;position: absolute;}
+table{
+  margin: auto;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+td{border: 1px solid black;width: 200px;}
