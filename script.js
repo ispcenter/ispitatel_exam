@@ -1,95 +1,175 @@
-(function(){
-  function buildQuiz(){
-    // variable to store the HTML output
-    const output = [];
+function toIndex(){
+  document.getElementById('submit').removeEventListener('click', showResults);
+  document.body.innerHTML = "";
+  document.body.id = 'mainPage';
+  document.body.innerHTML = `<h1>Начальное тестирование испытателя</h1>
+  <div id="wrapperogl">
+    <table id="oglavlenie">
+      <tr><td class="tema"><a href="metodi4ka.html"><p>Краткий методический материал</p></a></td></tr>
+      <tr><td class="tema" onclick="toTeor()"><p>Проверка общих теоретических знаний</p></td></tr>
+      <tr><td class="tema" onclick="toPodgot()"><p>Вопросы по подготовке к испытаниям</p></td></tr>
+      <tr><td class="tema" onclick="toZada4i()"><p>Задачи на понимание регулирования в процессе испытаний</p></td></tr>
+      <tr><td class="tema" onclick="toProblems()"><p>Распознавание косяков и их устранение</p></td></tr>
+    </table>
+  </div>`;
+}
 
-    // for each question...
-    myQuestions.forEach(
-      (currentQuestion, questionNumber) => {
+function toTeor(){
+  document.body.innerHTML = "";
+  document.body.removeAttribute('id');
+  document.body.innerHTML = `<h1>Начальное тестирование испытателя</h1>
+  <div id="myHeader">
+    <div id="back" onclick="toIndex()">
+      <span class="icon">⇦</span> Назад
+    </div>
+    <h2>Проверка общих теоретических знаний</h2>
+  </div>
+  <div id="quiz"></div>
+  <button id="submit">Проверить</button>
+  <div id="results"></div>`;
+  tema = teor;
+  buildQuiz();
+  document.getElementById('submit').addEventListener('click', showResults);
 
-        // variable to store the list of possible answers
-        const answers = [];
+  var header = document.getElementById("myHeader");
+  var sticky = header.offsetTop;
+  window.onscroll = function() {headerFixer(header, sticky)};
+}
 
-        // and for each available answer...
-        for(letter in currentQuestion.answers){
+function toPodgot(){
+  document.body.innerHTML = "";
+  document.body.removeAttribute('id');
+  document.body.innerHTML = `<h1>Начальное тестирование испытателя</h1>
+  <div id="myHeader">
+    <div id="back" onclick="toIndex()">
+      <span class="icon">⇦</span> Назад
+    </div>
+    <h2>Вопросы по подготовке к испытаниям</h2>
+  </div>
+  <div id="quiz"></div>
+  <button id="submit">Проверить</button>
+  <div id="results"></div>`;
+  tema = podgot;
+  buildQuiz();
+  document.getElementById('submit').addEventListener('click', showResults);
+}
 
-          // ...add an HTML radio button
-          answers.push(
-            `<label>
-              <input type="radio" name="question${questionNumber}" value="${letter}">
-              <!-- <span class="circle">${letter}</span> -->
-              ${currentQuestion.answers[letter]}
-            </label>`
-          );
-        }
+function toZada4i(){
+  document.body.innerHTML = "";
+  document.body.removeAttribute('id');
+  document.body.innerHTML = `<h1>Начальное тестирование испытателя</h1>
+  <div id="myHeader">
+    <div id="back" onclick="toIndex()">
+      <span class="icon">⇦</span> Назад
+    </div>
+    <h2>Задачи на понимание регулирования</h2>
+  </div>
+  <div id="quiz"></div>
+  <button id="submit">Проверить</button>
+  <div id="results"></div>`;
+  tema = zada4i;
+  buildQuiz();
+  document.getElementById('submit').addEventListener('click', showResults);
+}
 
-        // add this question and its answers to the output
-        output.push(
-          `<div class="question"> ${currentQuestion.question} </div>
-          <div class="answers"> ${answers.join('')} </div><hr>`
+function toProblems(){
+  document.body.innerHTML = "";
+  document.body.removeAttribute('id');
+  document.body.innerHTML = `<h1>Начальное тестирование испытателя</h1>
+  <div id="myHeader">
+    <div id="back" onclick="toIndex()">
+      <span class="icon">⇦</span> Назад
+    </div>
+    <h2>Распознавание косяков</h2>
+  </div>
+  <div id="quiz"></div>
+  <button id="submit">Проверить</button>
+  <div id="results"></div>`;
+  tema = problems;
+  buildQuiz();
+  document.getElementById('submit').addEventListener('click', showResults);
+}
+
+function buildQuiz(){
+  let quizContainer = document.getElementById('quiz');
+
+  // variable to store the HTML output
+  const output = [];
+
+  // for each question...
+  tema.forEach(
+    (currentQuestion, questionNumber) => {
+
+      // variable to store the list of possible answers
+      const answers = [];
+
+      // and for each available answer...
+      for(letter in currentQuestion.answers){
+
+        // ...add an HTML radio button
+        answers.push(
+          `<label>
+            <input type="radio" name="question${questionNumber}" value="${letter}">
+            <!-- <span class="circle">${letter}</span> -->
+            ${currentQuestion.answers[letter]}
+          </label>`
         );
       }
-    );
 
-    // finally combine our output list into one string of HTML and put it on the page
-    quizContainer.innerHTML = output.join('');
-  }
-
-  function showResults(){
-
-    // gather answer containers from our quiz
-    const answerContainers = quizContainer.querySelectorAll('.answers');
-
-    // keep track of user's answers
-    let numCorrect = 0;
-
-    // for each question...
-    myQuestions.forEach( (currentQuestion, questionNumber) => {
-
-      // find selected answer
-      const answerContainer = answerContainers[questionNumber];
-      const selector = `input[name=question${questionNumber}]:checked`;
-      const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
-      // if answer is correct
-      if(userAnswer === currentQuestion.correctAnswer){
-        // add to the number of correct answers
-        numCorrect++;
-
-        // color the answers green
-        answerContainers[questionNumber].style.color = 'lightgreen';
-      }
-      // if answer is wrong or blank
-      else{
-        // color the answers red
-        answerContainers[questionNumber].style.color = 'red';
-      }
-    });
-
-    // show number of correct answers out of total
-    resultsContainer.innerHTML = `Правильных ответов: ${numCorrect} из ${myQuestions.length}`;
-  }
-
-  function headerFixer() {
-    if (window.pageYOffset > sticky) {
-      header.classList.add("sticky");
-    } else {
-      header.classList.remove("sticky");
+      // add this question and its answers to the output
+      output.push(
+        `<div class="question"> ${currentQuestion.question} </div>
+        <div class="answers"> ${answers.join('')} </div><hr>`
+      );
     }
+  );
+
+  // finally combine our output list into one string of HTML and put it on the page
+  quizContainer.innerHTML = output.join('');
+}
+
+function showResults(){
+  let resultsContainer = document.getElementById('results');
+  let quizContainer = document.getElementById('quiz');
+  // gather answer containers from our quiz
+  const answerContainers = quizContainer.querySelectorAll('.answers');
+
+  // keep track of user's answers
+  let numCorrect = 0;
+
+  // for each question...
+  tema.forEach( (currentQuestion, questionNumber) => {
+
+    // find selected answer
+    const answerContainer = answerContainers[questionNumber];
+    const selector = `input[name=question${questionNumber}]:checked`;
+    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+    // if answer is correct
+    if(userAnswer === currentQuestion.correctAnswer){
+      // add to the number of correct answers
+      numCorrect++;
+
+      // color the answers green
+      answerContainers[questionNumber].style.color = 'lightgreen';
+    }
+    // if answer is wrong or blank
+    else{
+      // color the answers red
+      answerContainers[questionNumber].style.color = 'red';
+    }
+  });
+
+  // show number of correct answers out of total
+  resultsContainer.innerHTML = `Правильных ответов: ${numCorrect} из ${tema.length}`;
+}
+
+function headerFixer(header, sticky) {
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
   }
-  
-  const quizContainer = document.getElementById('quiz');
-  const resultsContainer = document.getElementById('results');
-  const submitButton = document.getElementById('submit');
-  
-  var header = document.getElementById("myHeader");
-	var sticky = header.offsetTop;
+}
 
-  // Kick things off
-  buildQuiz();
-
-  // Event listeners
-  submitButton.addEventListener('click', showResults);
-
-  window.onscroll = function() {headerFixer()};
-})();
+var tema;

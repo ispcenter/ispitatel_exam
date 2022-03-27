@@ -1,3 +1,7 @@
+@media screen and (max-width:600px) {
+  h1: font-size: 2.5em;
+}
+
 body{
 	font-size: 20px;
 	font-family: verdana, 'Work Sans', sans-serif;
@@ -15,7 +19,13 @@ h1{
   background-color: #444;
   color: rgb(213, 238, 145);
 }
-h2 {width: 100%; margin: auto;color: #eef76f;height: 50px;}
+h2 {
+  width: 100%;
+  margin: auto;
+  color: #eef76f;
+  height: 50px;
+  padding: 10px;
+}
 a {text-decoration: none; color: inherit;}
 .question{
 	text-align: left;
@@ -62,7 +72,7 @@ button:hover{
   font: 32px Arial, sans-serif;
   display: inline-block;
 }
-#myHeader{background: rgb(41, 41, 2);height: 50px;padding: 5px;}
+#myHeader{background: rgb(41, 41, 2);padding: 5px;}
 .sticky {
   position: fixed;
   top: 0;
@@ -71,18 +81,19 @@ button:hover{
 #back{
   float: left;
   width: 100px;
-  height: 50px;
+  height: 60px;
   font-size: 20px;
   background: gray;
   color: rgb(204, 236, 20);
   border-radius: 5px;
+  cursor: pointer;
 }
 #wrapperogl{margin: auto;width: 500px;}
 #oglavlenie {
 	margin: auto;
 	width: 500px;
-	align: center;
-	display: table-cell;
+  border: none;
+  border-collapse: separate;
   border-spacing: 5px;
 }
 .tema {
@@ -92,10 +103,10 @@ button:hover{
   height: 60px;
   vertical-align: middle;
   border-radius: 20px;
+  border: 3px solid gray;
   padding: 10px;
   margin: 10px auto;
-  border: 3px solid gray;
-  display: table-cell;
+  cursor: pointer;
 }
 .tema > p {margin: 0;}
 .icon{font-size: 50px;position: absolute;}

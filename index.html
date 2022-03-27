@@ -1,22 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Тест испытателя</title>
 	<link href="style.css" rel="stylesheet" type="text/css">	
 </head>
+
 <body id="mainPage">
 	<h1>Начальное тестирование испытателя</h1>
-	<div id="wrapperogl">
-		<div id="oglavlenie">
-		  <a href="metodi4ka.html"><div class="tema"><p>Краткий методический материал</p></div></a>
-			<a href="teoria.html"><div class="tema"><p>Проверка общих теоретических знаний</p></div></a>
-			<a href="podgot.html"><div class="tema"><p>Вопросы по подготовке к испытаниям</p></div></a>
-			<a href="zada4i.html"><div class="tema"><p>Задачи на понимание регулирования в процессе испытаний</p></div></a>
-			<a href="problems.html"><div class="tema"><p>Распознавание косяков и их устранение</p></div></a>
-		</div>
-	</div>
+  <div id="wrapperogl">
+    <table id="oglavlenie">
+      <tr><td class="tema"><a href="metodi4ka.html"><p>Краткий методический материал</p></a></td></tr>
+      <tr><td class="tema" onclick="toTeor()"><p>Проверка общих теоретических знаний</p></td></tr>
+      <tr><td class="tema" onclick="toPodgot()"><p>Вопросы по подготовке к испытаниям</p></td></tr>
+      <tr><td class="tema" onclick="toZada4i()"><p>Задачи на понимание регулирования в процессе испытаний</p></td></tr>
+      <tr><td class="tema" onclick="toProblems()"><p>Распознавание косяков и их устранение</p></td></tr>
+    </table>
+  </div>
 </body>
+
+<script src="q1_teor.js"></script>
+<script src="q2_podgot.js"></script>
+<script src="q3_zada4i.js"></script>
+<script src="q4_problems.js"></script>
+<script src="script.js"></script>
+
 </html>
 <!-- https://www.sitepoint.com/simple-javascript-quiz/ -->
